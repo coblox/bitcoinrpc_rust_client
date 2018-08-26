@@ -235,8 +235,8 @@ pub struct ScriptSig {
 }
 
 /// Transaction input can either be a regular transaction or a coinbase transaction.
-/// The have different fields, but most of the time, we will be interactings with regular transactions.
-/// For deserialization compatiblity, we define all the fields as Option<T> and provide accessors.
+/// They have different fields, but most of the time, we will be interacting with regular transactions.
+/// For deserialization compatibility, we define all the fields as Option<T> and provide accessors.
 #[derive(Deserialize, Serialize, Debug, PartialEq)]
 pub struct TransactionInput {
     txid: Option<TransactionId>,

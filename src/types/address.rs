@@ -13,7 +13,7 @@ pub struct Address(BitcoinAddress);
 // These (Eq, Hash, Serialize, Deserialize) work on the assumption that there is NO mix of Networks
 // (testnet, regtest) in the program.
 // Meaning that when executed, either all addresses are testnet or all addresses are regtest.
-// From the moment the program expect to connect to several bitcoind which are connected to
+// From the moment the program expects to connect to several bitcoind which are connected to
 // different nets, then all hell breaks loose.
 impl Eq for Address {}
 
