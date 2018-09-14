@@ -99,7 +99,10 @@ pub trait BitcoinRpcApi: Send + Sync {
         unimplemented!()
     }
 
-    // TODO: getblockhash
+    fn get_block_hash(&self, height: u32) -> Result<Result<BlockHash, RpcError>, HTTPError> {
+        unimplemented!()
+    }
+
     // TODO: getblockheader
     // TODO: getblocktemplate
     // TODO: getchaintips
