@@ -164,6 +164,14 @@ impl BitcoinRpcApi for BitcoinCoreClient {
         ))
     }
 
+    fn get_best_block_hash(&self) -> Result<Result<BlockHash, RpcError>, HTTPError> {
+        self.send(&RpcRequest::new0(
+            JsonRpcVersion::V1,
+            "42",
+            "getbestblockhash",
+        ))
+    }
+
     fn get_block(&self, header_hash: &BlockHash) -> Result<Result<Block, RpcError>, HTTPError> {
         self.send(&RpcRequest::new1(
             JsonRpcVersion::V1,
