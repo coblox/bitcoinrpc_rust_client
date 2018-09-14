@@ -87,7 +87,12 @@ pub trait BitcoinRpcApi: Send + Sync {
         unimplemented!()
     }
 
+    // TODO(evg): add verbosity param instead of separate methods?
     fn get_block(&self, header_hash: &BlockHash) -> Result<Result<Block, RpcError>, HTTPError> {
+        unimplemented!()
+    }
+
+    fn get_block_verbose(&self, header_hash: &BlockHash) -> Result<Result<VerboseBlock, RpcError>, HTTPError>  {
         unimplemented!()
     }
 
