@@ -94,6 +94,19 @@ fn getblock() {
 }
 
 #[test]
+fn getblockverbose() {
+    setup();
+
+    assert_successful_result(|client| {
+        let block_hash = BitcoinCoreTestClient::new(client).a_block_hash();
+
+        client.get_block_verbose(&block_hash)
+    })
+
+
+}
+
+#[test]
 fn validate_address() {
     setup();
 

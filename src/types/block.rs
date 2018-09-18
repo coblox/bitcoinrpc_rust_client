@@ -19,6 +19,7 @@ impl From<BlockHeight> for u32 {
     }
 }
 
+// TODO(evg): avoid code duplicate
 #[derive(Deserialize, Serialize, Debug, PartialEq)]
 pub struct Block {
     pub hash: BlockHash,
@@ -32,6 +33,29 @@ pub struct Block {
     version_hex: String,
     merkleroot: String,
     pub tx: Vec<TransactionId>,
+    time: u64,
+    mediantime: u64,
+    nonce: u32,
+    bits: String,
+    difficulty: f64,
+    chainwork: String,
+    previousblockhash: Option<BlockHash>,
+    nextblockhash: Option<BlockHash>,
+}
+
+#[derive(Deserialize, Serialize, Debug, PartialEq)]
+pub struct VerboseBlock {
+    pub hash: BlockHash,
+    confirmations: i32,
+    size: u32,
+    strippedsize: u32,
+    weight: u32,
+    height: u32,
+    version: u32,
+    #[serde(rename = "versionHex")]
+    version_hex: String,
+    merkleroot: String,
+    pub tx: Vec<VerboseRawTransaction>,
     time: u64,
     mediantime: u64,
     nonce: u32,

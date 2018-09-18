@@ -7,6 +7,8 @@ use std::fmt::Debug;
 use types::{Address, *};
 use BitcoinRpcApi;
 
+use serde_json;
+
 struct RetryConfig {
     max_retries: u32,
     interval: u64,
@@ -164,12 +166,39 @@ impl BitcoinRpcApi for BitcoinCoreClient {
         ))
     }
 
+    fn get_best_block_hash(&self) -> Result<Result<BlockHash, RpcError>, HTTPError> {
+        self.send(&RpcRequest::new0(
+            JsonRpcVersion::V1,
+            "42",
+            "getbestblockhash",
+        ))
+    }
+
     fn get_block(&self, header_hash: &BlockHash) -> Result<Result<Block, RpcError>, HTTPError> {
         self.send(&RpcRequest::new1(
             JsonRpcVersion::V1,
             "42",
             "getblock",
             header_hash,
+        ))
+    }
+
+    fn get_block_verbose(&self, header_hash: &BlockHash) -> Result<Result<VerboseBlock, RpcError>, HTTPError>  {
+        let req = &RpcRequest::new2(
+            JsonRpcVersion::V1,
+            "42",
+            "getblock",
+            header_hash,
+            2
+        );
+        println!("{}", serde_json::to_string(req).unwrap());
+
+        self.send(&RpcRequest::new2(
+            JsonRpcVersion::V1,
+            "42",
+            "getblock",
+            header_hash,
+            2,
         ))
     }
 
@@ -183,6 +212,15 @@ impl BitcoinRpcApi for BitcoinCoreClient {
 
     fn get_block_count(&self) -> Result<Result<BlockHeight, RpcError>, HTTPError> {
         self.send(&RpcRequest::new0(JsonRpcVersion::V1, "42", "getblockcount"))
+    }
+
+    fn get_block_hash(&self, height: u32) -> Result<Result<BlockHash, RpcError>, HTTPError> {
+        self.send(&RpcRequest::new1(
+            JsonRpcVersion::V1,
+            "42",
+            "getblockhash",
+            height,
+        ))
     }
 
     fn get_new_address(&self) -> Result<Result<Address, RpcError>, HTTPError> {

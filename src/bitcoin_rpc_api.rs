@@ -82,9 +82,17 @@ pub trait BitcoinRpcApi: Send + Sync {
     // TODO: getaddednodeinfo
     // TODO: getaddressesbyaccount
     // TODO: getbalance
-    // TODO: getbestblockhash
 
+    fn get_best_block_hash(&self) -> Result<Result<BlockHash, RpcError>, HTTPError> {
+        unimplemented!()
+    }
+
+    // TODO(evg): add verbosity param instead of separate methods?
     fn get_block(&self, header_hash: &BlockHash) -> Result<Result<Block, RpcError>, HTTPError> {
+        unimplemented!()
+    }
+
+    fn get_block_verbose(&self, header_hash: &BlockHash) -> Result<Result<VerboseBlock, RpcError>, HTTPError>  {
         unimplemented!()
     }
 
@@ -96,7 +104,10 @@ pub trait BitcoinRpcApi: Send + Sync {
         unimplemented!()
     }
 
-    // TODO: getblockhash
+    fn get_block_hash(&self, height: u32) -> Result<Result<BlockHash, RpcError>, HTTPError> {
+        unimplemented!()
+    }
+
     // TODO: getblockheader
     // TODO: getblocktemplate
     // TODO: getchaintips
