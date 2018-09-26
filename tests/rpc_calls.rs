@@ -63,6 +63,12 @@ fn getaccount() {
 }
 
 #[test]
+fn get_balance() {
+    setup();
+    assert_successful_result(BitcoinCoreClient::get_balance)
+}
+
+#[test]
 fn listunspent() {
     setup();
     assert_successful_result(|client| {

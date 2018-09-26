@@ -81,7 +81,9 @@ pub trait BitcoinRpcApi: Send + Sync {
 
     // TODO: getaddednodeinfo
     // TODO: getaddressesbyaccount
-    // TODO: getbalance
+    fn get_balance(&self) -> Result<Result<f32, RpcError>, HTTPError> {
+        unimplemented!()
+    }
 
     fn get_best_block_hash(&self) -> Result<Result<BlockHash, RpcError>, HTTPError> {
         unimplemented!()
