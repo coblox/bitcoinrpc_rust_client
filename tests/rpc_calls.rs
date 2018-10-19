@@ -65,7 +65,10 @@ fn getaccount() {
 #[test]
 fn get_balance() {
     setup();
-    assert_successful_result(BitcoinCoreClient::get_balance)
+    assert_successful_result(|client| {
+        || client.generate(101).unwrap().unwrap();
+        client.get_balance(None, 1, false)
+    })
 }
 
 #[test]

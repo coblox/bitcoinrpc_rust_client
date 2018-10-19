@@ -164,8 +164,20 @@ impl BitcoinRpcApi for BitcoinCoreClient {
         ))
     }
 
-    fn get_balance(&self) -> Result<Result<f32, RpcError>, HTTPError> {
-        self.send(&RpcRequest::new0(JsonRpcVersion::V1, "42", "getbalance"))
+    fn get_balance(
+        &self,
+        account: Option<String>,
+        minconf: u32,
+        include_watchonly: bool,
+    ) -> Result<Result<f32, RpcError>, HTTPError> {
+        self.send(&RpcRequest::new3(
+            JsonRpcVersion::V1,
+            "42",
+            "getbalance",
+            account.unwrap_or("*".to_string()),
+            minconf,
+            include_watchonly,
+        ))
     }
 
     fn get_best_block_hash(&self) -> Result<Result<BlockHash, RpcError>, HTTPError> {
