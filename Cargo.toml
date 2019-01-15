@@ -9,7 +9,7 @@ categories = ["api-bindings"]
 keywords = ["bitcoin", "rpc", "client"]
 
 [dependencies]
-base64 = "0.9"
+base64 = "0.10"
 bitcoin = { version = "0.14", features = ["serde"] }
 hex = "0.3"
 jsonrpc_client = "0.2"
