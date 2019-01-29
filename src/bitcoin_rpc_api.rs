@@ -79,7 +79,14 @@ pub trait BitcoinRpcApi: Send + Sync {
         unimplemented!()
     }
 
-    // TODO: generatetoaddress
+    fn generate_to_address(
+        &self,
+        number_of_blocks: u32,
+        address: &Address,
+    ) -> Result<Result<Vec<BlockHash>, RpcError>, ClientError> {
+        unimplemented!()
+    }
+
     // TODO: getaddednodeinfo
 
     fn get_address_info(

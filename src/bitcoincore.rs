@@ -163,6 +163,20 @@ impl BitcoinRpcApi for BitcoinCoreClient {
         ))
     }
 
+    fn generate_to_address(
+        &self,
+        number_of_blocks: u32,
+        address: &Address,
+    ) -> Result<Result<Vec<BlockHash>, RpcError>, ClientError> {
+        self.send(&RpcRequest::new2(
+            JsonRpcVersion::V1,
+            "42",
+            "generatetoaddress",
+            number_of_blocks,
+            address,
+        ))
+    }
+
     fn get_address_info(
         &self,
         address: &Address,
